@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bgss.model.Booking;
+import com.bgss.service.GasBookingService;
 
 
 @WebServlet("/GasBookingController")
 public class GasBookingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String VIEW_CART_PAGE = "ViewCart.jsp";
-	private static final String PLACE_ORDER_PAGE = "PlaceOrder.jsp";
 	private static final String LOGIN = "login.jsp";
-	private static final String HAND_LOOM_PAGE = "handloom.jsp";
+	private static final String GAS_BOOKING_PAGE = "gas-booking.jsp";
+	private static final String GAS_BOOKING_HISTORY = "gas-booking-history.jsp";
 	RequestDispatcher requestDispatcher = null;
 
 	public GasBookingController() {
@@ -35,6 +35,13 @@ public class GasBookingController extends HttpServlet {
 		String check = (String) session.getAttribute("username");
 		String action = request.getParameter("action");
 		String navigation = "";
+		
+		if(action.equals("bookingHistory")) {
+			GasBookingService bookingService = new GasBookingService();
+			List<Booking> bookingHistory = bookingService.getBookingHistory();
+			request.setAttribute("details", bookingHistory);
+			navigation = GAS_BOOKING_HISTORY;
+		}
 		requestDispatcher = request.getRequestDispatcher(navigation);
 		requestDispatcher.forward(request, response);
 	}
@@ -43,10 +50,9 @@ public class GasBookingController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String check = (String) session.getAttribute("username");
 		String action = request.getParameter("submit");
 		
-		if (action.equals("Book now")) {
+		if (action.equals("Book Now")) {
 			Booking booking = new Booking();
 			
 			String customerNumber = request.getParameter("customerNumber");
@@ -67,6 +73,14 @@ public class GasBookingController extends HttpServlet {
 			booking.setPincode(pincode);
 			booking.setContactNo(contactNo);
 			
+			GasBookingService service = new GasBookingService();
+			int insertBooking = service.insertBooking(booking);
+			if (insertBooking > 0) {
+				List<Booking> bookingHistory = service.getBookingHistory();
+				request.setAttribute("msg", "Requeted gas booked successfully!!!");
+				request.setAttribute("details", bookingHistory);
+				requestDispatcher = request.getRequestDispatcher(GAS_BOOKING_HISTORY);
+			}
 		}
 		requestDispatcher.forward(request, response);
 	}

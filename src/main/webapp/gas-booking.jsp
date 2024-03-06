@@ -77,7 +77,7 @@
                     <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                         <div class="navbar-nav mx-auto">
                         	<a href="gas-booking.jsp" class="nav-item nav-link active">Gas Booking</a>
-                            <a href="booking-history.jsp" class="nav-item nav-link">Booking History</a>
+                            <a href="GasBookingController?action=bookingHistory" class="nav-item nav-link">Booking History</a>
                         </div>
                         <div class="d-flex m-3 me-0">
                             <a href="index.jsp" class="my-auto" title="LogOut">
@@ -106,7 +106,7 @@
                                 <h1 class="text-primary">Book Bio Gas Now</h1>
                             </div>
                         </div>
-                        <form action="LoginHomeController" method="post">
+                        <form action="GasBookingController" method="post">
                         <div class="row">
                         <div class="col-lg-6">
                         <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Customer Number" id="customerNumber" name="customerNumber">
