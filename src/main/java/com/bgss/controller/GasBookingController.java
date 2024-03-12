@@ -65,7 +65,7 @@ public class GasBookingController extends HttpServlet {
 			String contactNo = request.getParameter("contactNo");
 			
 			booking.setCustomerNumber(customerNumber);
-			booking.setCustomerNumber(gasType);
+			booking.setGasType(gasType);
 			booking.setServiceProvider(serviceProvider);
 			booking.setAddress1(address1);
 			booking.setAddress2(address2);

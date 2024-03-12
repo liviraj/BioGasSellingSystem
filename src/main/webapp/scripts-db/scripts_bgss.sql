@@ -21,3 +21,9 @@ CREATE TABLE `bgss`.`gasbooking` (
   `pincode` VARCHAR(45) NULL,
   `contactNo` VARCHAR(45) NULL,
   PRIMARY KEY (`bookingId`));
+  
+  -- new
+  ALTER TABLE `bgss`.`login` 
+ADD COLUMN `email` VARCHAR(45) NULL AFTER `role`,
+ADD COLUMN `mobileNo` VARCHAR(45) NULL AFTER `email`,
+ADD COLUMN `address` VARCHAR(45) NULL AFTER `mobileNo`;

@@ -52,17 +52,24 @@ public class LoginRegisterController extends HttpServlet {
 		String username = request.getParameter("uname");
 		String password = request.getParameter("psw");
 		String password1 = request.getParameter("psw1");
+		String email = request.getParameter("email");
+		String mobileNo = request.getParameter("mobileNo");
+		String address = request.getParameter("address");
+		
 		String navigation = "";
 
-		LoginModel beenEMS = new LoginModel();
-		beenEMS.setUsername(username);
-		beenEMS.setPassword(password);
+		LoginModel been = new LoginModel();
+		been.setUsername(username);
+		been.setPassword(password);
+		been.setEmail(email);
+		been.setMobileNo(mobileNo);
+		been.setAddress(address);
 
 		LoginService loginServiceEMS = new LoginService();
 		if (password.equals(password1)) {
-			int status = loginServiceEMS.register(beenEMS);
+			int status = loginServiceEMS.register(been);
 			if (status == 1) {
-				request.setAttribute("msg", "Username AndPassword Added Sucessfully");
+				request.setAttribute("msg", "User Registerd Sucessfully");
 				navigation = login;
 			} else {
 				navigation = home;

@@ -68,9 +68,12 @@ public class LoginService {
 		try {
 			con = DbConnection.getConnection();
 			PreparedStatement ps = (PreparedStatement) con
-					.prepareStatement("insert into login(username,password) values(?,?)");
+					.prepareStatement("insert into login(username,password,email,mobileNo,address) values(?,?,?,?,?)");
 			ps.setString(1, username);
 			ps.setString(2, password);
+			ps.setString(3, beenLogin.getEmail());
+			ps.setString(4, beenLogin.getMobileNo());
+			ps.setString(5, beenLogin.getAddress());
 			status = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

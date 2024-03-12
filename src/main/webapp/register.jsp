@@ -131,6 +131,10 @@ function validation() {
                                 <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Username" id="uname" name="uname">
                                 <input type="password" class="w-100 form-control border-0 py-3 mb-4" placeholder="Password" id="psw" name="psw">
                                 <input type="password" class="w-100 form-control border-0 py-3 mb-4" placeholder="Re-Enter Password" id="psw1" name="psw1">
+                                <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Email Address" id="email" name="email">
+                                <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Mobile Number" id="mobileNo" name="mobileNo">
+                                <input class="form-control" id="address" type="text" placeholder="Enter your address here..." style="height: 10rem" name="address"></input>
+                                <br>
                                 <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary" id="contactSubmit" type="submit" name="submit" value="Submit">Submit</button>
                             </form>
                         </div>
